@@ -20,7 +20,7 @@ class TestController extends Controller
 
 
     public function secs() {
-        $sec = time() + (31536000*238) - (105*864000);
+        $sec = time() + (31536000*238) - (105*86400);
         echo $sec;
     }
 
@@ -30,7 +30,7 @@ class TestController extends Controller
     // $data = json_decode($response);
     // echo json_encode($data['attachments']);
     $data = json_decode($response, $assoc = false);
-    echo ($data[attachments]);
+    echo json_encode($data['attachments']);
     
     }
 
@@ -46,17 +46,18 @@ class TestController extends Controller
     public function teams() { 
         $i=0;
         $j=0;
-        $students = ["st1", "st2", "st3", "st4", "st5", "st6", "st7", "st8", "st9", "st10"];
+        $added = [];
+        $students = ["st1", "st2", "st3", "st4", "st5", "st6", "st7", "st8", "st9"];
         while(count($students)!=0){
-            $i = rand(0, count($students)-1);
-            echo json_encode($students[$i]);
-            unset($students[$i]);
-            var_dump($students);
-            $j = rand(0, count($students)-1);
-            echo json_encode($students[$j]);
-            unset($students[$j]);
-            var_dump($students);
+
+            echo array_pop($students);
+            
+            if(count($students)!=0){
+                echo(" ---- ");
+            echo array_pop($students);
+            }
             echo("<br>");
+
         }
     }
 
