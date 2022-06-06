@@ -27,17 +27,19 @@ class TestController extends Controller
 
     public function texts() { 
     $response = file_get_contents('https://icanhazdadjoke.com/slack');
-    $data = json_decode($response);
-    echo json_encode($data['attachments']);
+    // $data = json_decode($response);
+    // echo json_encode($data['attachments']);
+    $data = json_decode($response, $assoc = false);
+    echo ($data[attachments]);
     
     }
 
 
     public function beers() { 
         $response = file_get_contents('https://api.punkapi.com/v2/beers');
-        // $data = json_decode($response);
-        // echo $data[0];
-        echo $response[0];
+        $data = json_decode($response, $assoc = false);
+        $nb = rand(0, count($data)-1);
+        echo json_encode($data[$nb]);
     }
 
 
